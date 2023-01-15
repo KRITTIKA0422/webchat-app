@@ -16,7 +16,6 @@ export default function Login(){
         onSubmit:(userDetails)=>{
             console.log("onSubmit",userDetails);
            
-
             fetch(loginRoute,{
                 method:'POST',
                 headers:{
@@ -31,7 +30,9 @@ export default function Login(){
                 }
             }).then(data=>{
                 console.log(data.token);
+                console.log(data.username);
                 localStorage.setItem("token",data.token);
+                localStorage.setItem('username',data.username);
                 navigate('/chat');
             }).catch(err=>{
                 console.log(err);
@@ -53,7 +54,7 @@ export default function Login(){
               <input type="password" placeholder="Password" name="password" onChange={formik.handleChange} value={formik.values.password}/>
               <input type="password" placeholder="Confirm Password" name="confirmPassword" onChange={formik.handleChange} value={formik.values.confirmPassword}/>
               <button type="submit">{submitbtn}</button>
-              <span>Do not have an account?<Link to="/register">Register</Link></span>
+              <span>Do not have an account?<Link to="/">Register</Link></span>
        </form>
         </div>
         </div>
